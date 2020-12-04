@@ -20,13 +20,11 @@ namespace SampleApplication.Services
         {
             Connections = connections;
         }
-
-
+        
         public Task<(bool, ServiceResponse)> GetId(GetUserDetailRequest request)
         {
             ServiceResponse response = new ServiceResponse();
-
-
+             
             Connections.Push("GET_USER_DETAIL", request.Id, new {Id = request.Id, Name = "Test"});
 
             response.Status = true;

@@ -18,14 +18,12 @@ namespace SampleApplication.Controllers
     {
         private readonly ILogger<TestController> _logger;
         private readonly ISampleService SampleService;
-
         public TestController(ILogger<TestController> logger, ISampleService sampleService)
         {
             _logger = logger;
             SampleService = sampleService;
         }
-
-
+         
         [HttpGet]
         public async Task<ServiceResponse> Get([FromQuery] GetUserDetailRequest request)
         {
