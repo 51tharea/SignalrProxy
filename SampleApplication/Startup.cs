@@ -31,6 +31,8 @@ namespace SampleApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
+            
+            services.AddOptions<HubClientOptions>().Bind(Configuration.GetSection("HubConfig"));
 
             services.AddControllers();
 
@@ -39,9 +41,7 @@ namespace SampleApplication
             services.AddTransient<ISampleService, SampleService>();
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "SampleApplication", Version = "v1"}); });
-
-            services.Configure<HubClientOptions>(Configuration.GetSection("HubConfig"));
-
+              
             services.AddSignalR(options =>
             {
                 options.MaximumReceiveMessageSize = null;
