@@ -6,7 +6,9 @@
     <projectFile>SignalRProxyTest/SignalRProxyTest.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59fac9d4-e77d-4ab9-9e01-26deccf78108" name="Default Changelist" comment="" />
+    <list default="true" id="59fac9d4-e77d-4ab9-9e01-26deccf78108" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SignalrProxy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SignalrProxy/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +25,6 @@
       <list>
         <option value="$PROJECT_DIR$/SignalrProxy/Interfaces/IHubConnections.cs" />
         <option value="$PROJECT_DIR$/SignalrProxy/Class1.cs" />
-        <option value="$PROJECT_DIR$/SignalrProxy/HubClients.cs" />
         <option value="$PROJECT_DIR$/SignalrProxy/SignalrProxy.csproj" />
         <option value="$PROJECT_DIR$/SignalRProxyTest/UnitTest1.cs" />
         <option value="$PROJECT_DIR$/SignalRProxyTest/SignalrTestProxy.cs" />
@@ -36,6 +37,7 @@
         <option value="$PROJECT_DIR$/SampleApplication/appsettings.json" />
         <option value="$PROJECT_DIR$/SampleApplication/appsettings.Development.json" />
         <option value="$PROJECT_DIR$/SampleApplication/Startup.cs" />
+        <option value="$PROJECT_DIR$/SignalrProxy/HubClients.cs" />
       </list>
     </option>
   </component>
@@ -105,5 +107,9 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2372" y="194" key="Rider.ProjectTemplateDialog.Size/1920.0.1920.1050/0.0.1920.1050@1920.0.1920.1050" timestamp="1607061258837" />
+    <state x="0" y="75" width="1582" height="1031" key="dock-window-1" timestamp="1607064346885">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="0" y="75" width="1582" height="1031" key="dock-window-1/1920.0.1920.1050/0.0.1920.1050@1920.0.1920.1050" timestamp="1607064346885" />
   </component>
 </project>
