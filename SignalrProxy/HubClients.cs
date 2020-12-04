@@ -98,7 +98,7 @@ namespace SignalrProxy
             {
                 var oldConnectionId = Connections.Where(p => p.Value == clientId).Select(p => p.Key).Single();
 
-                Connections.Remove(connectionId, out clientId);
+                Connections.Remove(connectionId, out _);
 
                 Connections.TryAdd(connectionId, clientId);
 
