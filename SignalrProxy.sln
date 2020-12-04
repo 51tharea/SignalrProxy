@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalrProxy", "SignalrProxy\SignalrProxy.csproj", "{1771C6A2-94B0-49F2-AE6B-7F156AD538EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignalRProxyTest", "SignalRProxyTest\SignalRProxyTest.csproj", "{64B7D114-E8B7-42C6-B377-906D535861BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApplication", "SampleApplication\SampleApplication.csproj", "{B29B8292-5EBD-4408-BF2E-60D9313EFE46}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1771C6A2-94B0-49F2-AE6B-7F156AD538EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1771C6A2-94B0-49F2-AE6B-7F156AD538EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1771C6A2-94B0-49F2-AE6B-7F156AD538EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1771C6A2-94B0-49F2-AE6B-7F156AD538EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64B7D114-E8B7-42C6-B377-906D535861BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64B7D114-E8B7-42C6-B377-906D535861BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64B7D114-E8B7-42C6-B377-906D535861BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64B7D114-E8B7-42C6-B377-906D535861BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B29B8292-5EBD-4408-BF2E-60D9313EFE46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B29B8292-5EBD-4408-BF2E-60D9313EFE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B29B8292-5EBD-4408-BF2E-60D9313EFE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B29B8292-5EBD-4408-BF2E-60D9313EFE46}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
