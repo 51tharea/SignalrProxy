@@ -25,26 +25,27 @@ namespace SampleApplication
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
-            
+
             services.AddOptions<HubClientOptions>().Bind(Configuration.GetSection("HubConfig"));
 
             services.AddControllers();
 
             services.AddSingleton(typeof(IHubConnections<>), typeof(HubClients<>));
-
+            services.AddSingleton<IUserService, UserService>();
             services.AddTransient<ISampleService, SampleService>();
-
+           
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "SampleApplication", Version = "v1"}); });
-              
+
             services.AddSignalR(options =>
             {
                 options.MaximumReceiveMessageSize = null;
+
                 //options.ClientTimeoutInterval = null;
                 //options.KeepAliveInterval
             });
@@ -65,7 +66,7 @@ namespace SampleApplication
             app.UseRouting();
 
             app.UseAuthorization();
-            
+
             app.UseMiddleware<ChatMiddleware>();
 
             app.UseEndpoints(endpoints =>

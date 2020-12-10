@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\can.acar\.nuget\packages\microsoft.net.test.sdk\16.7.1\build\netcoreapp2.1" t="Include">
+    <e p="C:\Users\Eclips\.nuget\packages\microsoft.net.test.sdk\16.7.1\build\netcoreapp2.1" t="Include">
       <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
     </e>
-    <e p="C:\Users\can.acar\.nuget\packages\microsoft.testplatform.testhost\16.7.1\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
-    <e p="C:\Users\can.acar\.nuget\packages\microsoft.testplatform.testhost\16.7.1\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
-    <e p="C:\Users\can.acar\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll" t="Include" />
-    <e p="C:\Users\can.acar\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll" t="Include" />
-    <e p="C:\Users\can.acar\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="C:\Users\can.acar\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\can.acar\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_SignalrProxy.985787349.00" t="ExcludeRecursive" />
-    <e p="E:\Projects\SignalrProxy" t="IncludeFlat">
+    <e p="C:\Users\Eclips\.nuget\packages\microsoft.testplatform.testhost\16.7.1\build\netcoreapp2.1\x64\testhost.dll" t="Include" />
+    <e p="C:\Users\Eclips\.nuget\packages\microsoft.testplatform.testhost\16.7.1\build\netcoreapp2.1\x64\testhost.exe" t="Include" />
+    <e p="C:\Users\Eclips\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Eclips\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="C:\Users\Eclips\.nuget\packages\xunit.runner.visualstudio\2.4.3\build\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="C:\Users\Eclips\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Eclips\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_SignalrProxy.-1373519660.00" t="ExcludeRecursive" />
+    <e p="D:\Projects\SignalrProxy" t="IncludeFlat">
+      <e p=".git\info\exclude" t="IncludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="SampleApplication" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
@@ -19,6 +20,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="ChatMiddleware.cs" t="Include" />
         <e p="Controllers" t="Include">
+          <e p="ChatController.cs" t="Include" />
           <e p="TestController.cs" t="Include" />
           <e p="WeatherForecastController.cs" t="Include" />
         </e>
@@ -45,6 +47,7 @@
         <e p="SampleApplication.csproj" t="IncludeRecursive" />
         <e p="Services" t="Include">
           <e p="SampleService.cs" t="Include" />
+          <e p="UserService.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="WeatherForecast.cs" t="Include" />
@@ -62,6 +65,9 @@
               <e p="SignalrProxy.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
+        </e>
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
         </e>
         <e p="SignalrProxy.csproj" t="IncludeRecursive" />
       </e>

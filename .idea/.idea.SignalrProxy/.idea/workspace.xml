@@ -25,9 +25,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59fac9d4-e77d-4ab9-9e01-26deccf78108" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SampleApplication/ChatMiddleware.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SampleApplication/Controllers/ChatController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SampleApplication/Services/UserService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SignalrProxy/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SignalrProxy/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SignalrProxy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SignalrProxy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SampleApplication/Hubs/SampleHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SampleApplication/Hubs/SampleHub.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SampleApplication/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SampleApplication/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,9 +39,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/../SignalrProxyTest/SignalrProxy/UnitTest1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -57,9 +56,11 @@
         <option value="$PROJECT_DIR$/SignalrProxy/HubClients.cs" />
         <option value="$PROJECT_DIR$/SampleApplication/Controllers/TestController.cs" />
         <option value="$PROJECT_DIR$/SampleApplication/Services/SampleService.cs" />
-        <option value="$PROJECT_DIR$/SampleApplication/Hubs/SampleHub.cs" />
         <option value="$PROJECT_DIR$/SampleApplication/ChatMiddleware.cs" />
+        <option value="$PROJECT_DIR$/SampleApplication/Hubs/SampleHub.cs" />
         <option value="$PROJECT_DIR$/SampleApplication/Startup.cs" />
+        <option value="$PROJECT_DIR$/SampleApplication/Services/UserService.cs" />
+        <option value="$PROJECT_DIR$/SampleApplication/Controllers/ChatController.cs" />
       </list>
     </option>
   </component>
@@ -74,7 +75,7 @@
     <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.35027322" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="RiderNuGetOptionsPageId" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Colors" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.SampleApplication">
@@ -113,6 +114,17 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="59fac9d4-e77d-4ab9-9e01-26deccf78108" name="Default Changelist" comment="" />
+      <created>1607614461991</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607614461991</updated>
+      <workItem from="1607614472035" duration="4632000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
@@ -128,6 +140,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
@@ -241,9 +254,10 @@
       <screen x="1920" y="0" width="1920" height="1050" />
     </state>
     <state x="2372" y="194" key="Rider.ProjectTemplateDialog.Size/1920.0.1920.1050/0.0.1920.1050@1920.0.1920.1050" timestamp="1607061258837" />
-    <state x="351" y="83" key="SettingsEditor" timestamp="1607492329683">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="38" y="81" key="SettingsEditor" timestamp="1607614612691">
+      <screen x="0" y="0" width="2560" height="1040" />
     </state>
+    <state x="38" y="81" key="SettingsEditor/0.0.2560.1040@0.0.2560.1040" timestamp="1607614612691" />
     <state x="351" y="83" key="SettingsEditor/1920.0.1920.1050/0.0.1920.1050@0.0.1920.1050" timestamp="1607492329683" />
     <state x="92" y="92" width="1736" height="866" key="VCS.FileHistoryDialog" timestamp="1607072673912">
       <screen x="0" y="0" width="1920" height="1050" />
