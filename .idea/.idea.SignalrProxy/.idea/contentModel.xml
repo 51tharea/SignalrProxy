@@ -17,6 +17,7 @@
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
+        <e p="ChatMiddleware.cs" t="Include" />
         <e p="Controllers" t="Include">
           <e p="TestController.cs" t="Include" />
           <e p="WeatherForecastController.cs" t="Include" />

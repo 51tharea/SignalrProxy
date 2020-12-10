@@ -65,12 +65,14 @@ namespace SampleApplication
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.UseMiddleware<ChatMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
 
-                endpoints.MapHub<SampleHub>("/hub");
+                endpoints.MapHub<SampleHub>("/chat");
             });
         }
     }
