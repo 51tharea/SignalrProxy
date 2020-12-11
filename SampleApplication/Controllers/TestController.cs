@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using SampleApplication.Hubs;
 using SampleApplication.Requests;
 using SampleApplication.Responses;
 using SampleApplication.Services;
-using SignalrProxy.Interfaces;
 
 namespace SampleApplication.Controllers
 {

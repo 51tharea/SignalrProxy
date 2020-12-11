@@ -1,17 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
+using SampleApplication.Services;
 using SignalrProxy.Interfaces;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SampleApplication.Hubs
 {
     public class SampleHub : Hub
     {
         private readonly IHubConnections<SampleHub> Connections;
+        private readonly IUserService UserService;
 
-        public SampleHub(IHubConnections<SampleHub> connections)
+        public SampleHub(IHubConnections<SampleHub> connections, IUserService userService)
         {
             Connections = connections;
+            UserService = userService;
         }
 
         public Task Typing(Guid clientId, Guid fromId)
@@ -19,9 +24,44 @@ namespace SampleApplication.Hubs
             return Connections.Push("TYPING", fromId, new {clientId, message = "typing..."});
         }
 
-        public Task SendMessage(Guid clientId, Guid fromId, string message)
+        public Task SendMessage(IDictionary<string, string> payload)
         {
+            var fromId = Guid.Parse(payload["fromId"]);
+
+            var clientId = Guid.Parse(payload["clientId"]);
+
+            var message = payload["message"];
+
             return Connections.Push("NEW_MESSAGE", fromId, new {clientId, message});
+        }
+
+        public Task GetUsers(IDictionary<string, string> payload)
+        {
+            var channel = payload["channel"];
+
+            var clientId = Guid.Parse(payload["clientId"]);
+
+            var users = UserService.GetUsers(clientId);
+
+            return Connections.Push("USER_LOAD_SUCCESS", clientId, users);
+        }
+
+        public Task Join(IDictionary<string, string> payload)
+        {
+            var username = payload["username"];
+
+            var clientId = Guid.Parse(payload["clientId"]);
+
+            return UserService.AddUser(username, clientId);
+        }
+
+        public Task JoinChannel(IDictionary<string, string> payload)
+        {
+            var channel = payload["channel"];
+
+            var clientId = Guid.Parse(payload["clientId"]);
+
+            return UserService.addChannel(channel, clientId);
         }
 
         public override Task OnConnectedAsync()
