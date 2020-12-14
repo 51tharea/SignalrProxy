@@ -27,7 +27,7 @@ namespace SampleApplication.Controllers
 
             if (!hasClient) return BadRequest(request);
 
-            var userName = request["username"].ToString();
+            var userName = request["username"];
 
             await UserService.AddUser(userName, Guid.Parse(clientId));
 

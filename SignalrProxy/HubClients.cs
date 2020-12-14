@@ -37,7 +37,7 @@ namespace SignalrProxy
             Channels.Remove(connectionId, out var channel);
 
             Context.Clients.Clients(connectionId) //Client(connectionId)
-                .SendAsync(channel!,
+                .SendAsync(channel.ToString(),
                     new
                     {
                         type = Options.Value.DisconnectType,
@@ -52,7 +52,12 @@ namespace SignalrProxy
         }
 
         /// <summary>
-        /// 
+        ///  eventName channel name opened in redux-saga. For example
+        /// <example>
+        ///    yield takeEvery("ON_LOAD",somethingFunction)
+        /// </example>
+        ///  clientId connected user
+        ///  payload is any data.
         /// </summary>
         /// <param name="eventName"></param>
         /// <param name="clientId"></param>
@@ -65,6 +70,7 @@ namespace SignalrProxy
                 SendLock.Wait();
 
                 var connectionId = Connections.Where(p => p.Value == clientId).Select(s => s.Key).SingleOrDefault();
+
                 var channel = Channels.Where(p => p.Key == connectionId).Select(s => s.Value).SingleOrDefault();
 
                 if (connectionId != null)
@@ -83,6 +89,53 @@ namespace SignalrProxy
 
 
             return Task.CompletedTask;
+        }
+
+        /// <summary>
+        ///  eventName channel name opened in redux-saga. For example
+        /// <example>
+        ///    yield takeEvery("ON_LOAD",somethingFunction)
+        /// </example>
+        ///  clientId connected user
+        ///  payload is any data.
+        /// </summary>
+        /// <param name="eventName"></param>
+        /// <param name="clientId"></param>
+        /// <param name="payload"></param>
+        /// <returns></returns>
+        public Task PushAll(string eventName, Guid clientId, object payload)
+        {
+            try
+            {
+                SendLock.Wait();
+
+                var connectionId = Connections.Where(p => p.Value == clientId).Select(s => s.Key).SingleOrDefault();
+                 
+                if (connectionId != null)
+                {
+                    var channel = Channels.Where(p => p.Key == connectionId).Select(s => s.Value).Single();
+
+                    Context.Clients.All.SendAsync(channel!, new
+                    {
+                        type = eventName,
+                        payload
+                    });
+                }
+            }
+            finally
+            {
+                SendLock.Release();
+            }
+
+
+            return Task.CompletedTask;
+        }
+
+        public async Task<KeyValuePair<string, Guid>> GetUserId(string connectionId)
+        {
+            return Connections.Where(p => p.Key == connectionId)
+                .Select(s => new KeyValuePair<string, Guid>(s.Key, s.Value))
+                .ToDictionary(x => x.Key, x => x.Value).Single();
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SignalrProxy.Interfaces
@@ -7,7 +8,8 @@ namespace SignalrProxy.Interfaces
     {
         public Task Add(string connectionId, Guid clientId, string channel);
         public Task Remove(string connectionId);
-
         Task Push(string eventName, Guid clientId, object payload);
+        Task PushAll(string eventName, Guid clientId, object payload);
+        Task<KeyValuePair<string, Guid>> GetUserId(string connectionId);
     }
 }

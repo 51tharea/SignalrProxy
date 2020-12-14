@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using SampleApplication.Hubs;
 using SignalrProxy.Interfaces;
 
@@ -12,26 +13,31 @@ namespace SampleApplication.Services
         Task AddUser(string userName, Guid clientId);
         Task Remove(Guid clientId);
         Task<Dictionary<Guid, string>> GetUsers(Guid clientId);
-        Task addChannel(string channelName, Guid clientId);
+        Task AddChannel(string channelName, Guid clientId);
     }
 
     public class UserService : IUserService
     {
         private readonly IHubConnections<SampleHub> Connections;
+        private readonly ILogger<UserService> Logger;
         private readonly SortedDictionary<Guid, string> ConnectionList = new SortedDictionary<Guid, string>();
         private readonly SortedDictionary<Guid, string> Channels = new SortedDictionary<Guid, string>();
 
-        public UserService(IHubConnections<SampleHub> connections)
+        public UserService(IHubConnections<SampleHub> connections,ILogger<UserService> logger)
         {
             Connections = connections;
+            Logger = logger;
         }
 
-        public Task AddUser(string userName, Guid clientId)
+        public async Task AddUser(string userName, Guid clientId)
         {
             if (!ConnectionList.ContainsKey(clientId)) ConnectionList.Add(clientId, userName);
 
+            var users = await GetUsers(clientId);
+            
+            Logger.LogInformation("Event:CONNECTED,clientId:{clientId} payload:{@payload}", clientId, new {clientId});
 
-            return Task.CompletedTask;
+            await Connections.PushAll("USER_CONNECTED", clientId, DateTime.Now);
         }
 
         public Task Remove(Guid clientId)
@@ -51,7 +57,7 @@ namespace SampleApplication.Services
             return Task.FromResult(result);
         }
 
-        public Task addChannel(string channelName, Guid clientId)
+        public Task AddChannel(string channelName, Guid clientId)
         {
             if (!Channels.ContainsKey(clientId)) ConnectionList.Add(clientId, channelName);
 

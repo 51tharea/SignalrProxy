@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.Logging;
 using SampleApplication.Services;
 using SignalrProxy.Interfaces;
-using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace SampleApplication.Hubs
 {
     public class SampleHub : Hub
     {
+        private readonly ILogger<SampleHub> Logger;
         private readonly IHubConnections<SampleHub> Connections;
         private readonly IUserService UserService;
 
-        public SampleHub(IHubConnections<SampleHub> connections, IUserService userService)
+        public SampleHub(ILogger<SampleHub> logger, IHubConnections<SampleHub> connections, IUserService userService)
         {
+            Logger = logger;
             Connections = connections;
             UserService = userService;
         }
@@ -32,18 +35,21 @@ namespace SampleApplication.Hubs
 
             var message = payload["message"];
 
+            Logger.LogInformation("Event:NEW_MESSAGE,clientId:{clientId} payload:{@payload}", fromId, new {clientId, message});
+
             return Connections.Push("NEW_MESSAGE", fromId, new {clientId, message});
         }
 
-        public Task GetUsers(IDictionary<string, string> payload)
+        [HubMethodName("getUserList")]
+        public Task GetUserList(IDictionary<string, string> payload)
         {
-            var channel = payload["channel"];
-
             var clientId = Guid.Parse(payload["clientId"]);
 
             var users = UserService.GetUsers(clientId);
+            
+            Logger.LogInformation("Event:USER_LOAD_SUCCESS,clientId:{clientId} payload:{@payload}", clientId, payload);
 
-            return Connections.Push("USER_LOAD_SUCCESS", clientId, users);
+            return Connections.Push("USER_LOAD_SUCCESS", clientId, users.Result.Select(p => new {clientId = p.Key, username = p.Value}).ToList());
         }
 
         public Task Join(IDictionary<string, string> payload)
@@ -61,7 +67,7 @@ namespace SampleApplication.Hubs
 
             var clientId = Guid.Parse(payload["clientId"]);
 
-            return UserService.addChannel(channel, clientId);
+            return UserService.AddChannel(channel, clientId);
         }
 
         public override Task OnConnectedAsync()
@@ -78,9 +84,12 @@ namespace SampleApplication.Hubs
 
             //passed access token
 
-            var clientId = Guid.Parse(userId.ToString()!);
+            var clientId = Guid.Parse(userId?.ToString()!);
 
-            Connections.Add(Context.ConnectionId, clientId, channel.ToString());
+            Connections.Add(Context.ConnectionId, clientId, channel?.ToString());
+
+            Logger.LogInformation("Event:CONNECTED,clientId:{clientId} payload:{@payload}", clientId, new {clientId});
+
 
             return base.OnConnectedAsync();
         }
@@ -91,7 +100,17 @@ namespace SampleApplication.Hubs
 
             var connectionId = Context.ConnectionId;
 
+            var connection = Connections.GetUserId(connectionId);
+
             Connections.Remove(connectionId);
+
+            UserService.Remove(connection.Result.Value);
+
+            var user = UserService.GetUsers(connection.Result.Value);
+
+            Logger.LogInformation("Event:DISCONNECTED,clientId:{clientId} payload:{@payload}", connection.Result.Value, user.Result);
+
+            return Connections.Push("USER_DISCONNECTED", connection.Result.Value, new {clientId = connection.Result.Value, time = DateTime.Now.Hour.ToString("HH:mm:ss")});
 
             return Task.CompletedTask;
         }
