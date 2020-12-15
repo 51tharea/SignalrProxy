@@ -32,21 +32,23 @@ namespace SignalrProxy
         /// <returns></returns>
         public Task Remove(string connectionId)
         {
-            Connections.Remove(connectionId, out var clientId);
-
-            Channels.Remove(connectionId, out var channel);
-
-            Context.Clients.Clients(connectionId) //Client(connectionId)
-                .SendAsync(channel.ToString(),
-                    new
-                    {
-                        type = Options.Value.DisconnectType,
-                        payload = new
-                        {
-                            time = DateTime.Now.Ticks,
-                            clientId
-                        }
-                    });
+            if (Connections.TryRemove(connectionId, out var clientId))
+            {
+                if (Channels.TryRemove(connectionId, out var channel))
+                {
+                    Context.Clients.Clients(connectionId)
+                        .SendAsync(channel,
+                            new
+                            {
+                                type = Options.Value.DisconnectType,
+                                payload = new
+                                {
+                                    time = DateTime.Now.Ticks,
+                                    clientId
+                                }
+                            });
+                }
+            }
 
             return Task.CompletedTask;
         }
@@ -110,7 +112,7 @@ namespace SignalrProxy
                 SendLock.Wait();
 
                 var connectionId = Connections.Where(p => p.Value == clientId).Select(s => s.Key).SingleOrDefault();
-                 
+
                 if (connectionId != null)
                 {
                     var channel = Channels.Where(p => p.Key == connectionId).Select(s => s.Value).Single();
