@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using SampleApplication.Hubs;
 using SampleApplication.Requests;
 using SampleApplication.Responses;
@@ -19,13 +20,19 @@ namespace SampleApplication.Services
         {
             Connections = connections;
         }
-        
+
         public Task<(bool, ServiceResponse)> GetId(GetUserDetailRequest request)
         {
             ServiceResponse response = new ServiceResponse();
-             
-            Connections.Push("GET_USER_DETAIL", request.Id, new {Id = request.Id, Name = "Test"});
 
+            var tasks = new List<Task>(Connections.GetClients.Count);
+
+            var task = Connections.Push("GET_USER_DETAIL", request.Id, new {Id = request.Id, Name = "Test"});
+
+            tasks.Add(task);
+
+            Task.WhenAll(tasks);
+            
             response.Status = true;
 
             response.Data = new

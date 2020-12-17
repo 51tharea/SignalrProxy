@@ -18,6 +18,11 @@ namespace SignalrProxy
         private readonly ConcurrentDictionary<string, string> Channels = new ConcurrentDictionary<string, string>();
         private readonly SemaphoreSlim SendLock;
 
+        public ConcurrentDictionary<string, Guid> GetClients
+        {
+            get { return Connections; }
+        }
+
         public HubClients(IHubContext<THub> context, IOptions<HubClientOptions> options)
         {
             Context = context;
@@ -156,7 +161,6 @@ namespace SignalrProxy
                 Connections.Remove(connectionId, out _);
 
                 Connections.TryAdd(connectionId, clientId);
-
 
                 Context.Clients.Client(oldConnectionId).SendAsync(channel,
                     new
