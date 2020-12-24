@@ -14,14 +14,11 @@ namespace SignalrProxy
     {
         private readonly IHubContext<THub> Context;
         private readonly IOptions<HubClientOptions> Options;
-        private readonly ConcurrentDictionary<string, Guid> Connections = new ConcurrentDictionary<string, Guid>();
-        private readonly ConcurrentDictionary<string, string> Channels = new ConcurrentDictionary<string, string>();
+        private readonly ConcurrentDictionary<string, Guid> Connections = new();
+        private readonly ConcurrentDictionary<string, string> Channels = new();
         private readonly SemaphoreSlim SendLock;
 
-        public ConcurrentDictionary<string, Guid> GetClients
-        {
-            get { return Connections; }
-        }
+        public ConcurrentDictionary<string, Guid> GetClients => Connections;
 
         public HubClients(IHubContext<THub> context, IOptions<HubClientOptions> options)
         {
@@ -76,13 +73,13 @@ namespace SignalrProxy
             {
                 SendLock.Wait();
 
-                var connectionId = Connections.Where(p => p.Value == clientId).Select(s => s.Key).SingleOrDefault();
+                var connectionId = Connections.Where(p => p.Value == clientId).Select(s => s.Key).FirstOrDefault();
 
-                var channel = Channels.Where(p => p.Key == connectionId).Select(s => s.Value).SingleOrDefault();
+                var channel = Channels.Where(p => p.Key == connectionId).Select(s => s.Value).FirstOrDefault();
 
-                if (connectionId != null)
+                if (connectionId != null && channel != null)
                 {
-                    Context.Clients.Client(connectionId).SendAsync(channel!, new
+                    Context.Clients.Client(connectionId!).SendAsync(channel!, new
                     {
                         type = eventName,
                         payload

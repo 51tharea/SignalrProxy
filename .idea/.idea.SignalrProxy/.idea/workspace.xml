@@ -24,7 +24,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59fac9d4-e77d-4ab9-9e01-26deccf78108" name="Default Changelist" comment="" />
+    <list default="true" id="59fac9d4-e77d-4ab9-9e01-26deccf78108" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SignalrProxy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SignalrProxy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SampleApplication/Hubs/SampleHub.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SampleApplication/Hubs/SampleHub.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SampleApplication/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SampleApplication/Services/UserService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SignalrProxy/HubClients.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SignalrProxy/HubClients.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,15 +39,30 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/C80B499D-ADA7-49E0-A8EE-7A9B1744160B/2C4/AsyncValueTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E50AC9A3-25BA-4645-ABC6-611C41ACB074/8/ConcurrentDictionary.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/701DD03C-F898-4AF2-A4C7-B7BCBF1F5E73/28/DefaultHubDispatcher.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/701DD03C-F898-4AF2-A4C7-B7BCBF1F5E73/26/DefaultHubActivator.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/SignalrProxy/HubClients.cs" />
       <option value="$PROJECT_DIR$/SignalrProxy/Interfaces/IHubConnections.cs" />
       <option value="$PROJECT_DIR$/SampleApplication/Services/SampleService.cs" />
+      <option value="$PROJECT_DIR$/SignalrProxy/HubClients.cs" />
+      <option value="$PROJECT_DIR$/SampleApplication/Services/UserService.cs" />
+      <option value="$PROJECT_DIR$/SampleApplication/Hubs/SampleHub.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1l9EVYpAM4G7r61gCA9Ahh67w4Z" />
@@ -53,12 +73,18 @@
     <option name="showVisibilityIcons" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34686148" />
-    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.29761904" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34689265" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.SampleApplication">

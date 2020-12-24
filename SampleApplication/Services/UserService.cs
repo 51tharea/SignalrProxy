@@ -23,7 +23,7 @@ namespace SampleApplication.Services
         private readonly SortedDictionary<Guid, string> ConnectionList = new SortedDictionary<Guid, string>();
         private readonly SortedDictionary<Guid, string> Channels = new SortedDictionary<Guid, string>();
 
-        public UserService(IHubConnections<SampleHub> connections,ILogger<UserService> logger)
+        public UserService(IHubConnections<SampleHub> connections, ILogger<UserService> logger)
         {
             Connections = connections;
             Logger = logger;
@@ -34,16 +34,21 @@ namespace SampleApplication.Services
             if (!ConnectionList.ContainsKey(clientId)) ConnectionList.Add(clientId, userName);
 
             var users = await GetUsers(clientId);
-            
+
             Logger.LogInformation("Event:CONNECTED,clientId:{clientId} payload:{@payload}", clientId, new {clientId});
 
-            await Connections.PushAll("USER_CONNECTED", clientId, DateTime.Now);
+            await Connections.PushAll("USER_CONNECTED", clientId, new {sessionId = Guid.NewGuid()});
         }
 
         public Task Remove(Guid clientId)
         {
             ConnectionList.Remove(clientId);
+            
             Channels.Remove(clientId);
+            
+            Logger.LogInformation("Event:DISCONNECTED,clientId:{clientId} payload:{@payload}", clientId, new {clientId});
+            
+            Connections.PushAll("USER_DISCONNECTED", clientId, new {sessionId = Guid.NewGuid()});
 
             return Task.CompletedTask;
         }

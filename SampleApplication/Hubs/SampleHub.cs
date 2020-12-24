@@ -27,6 +27,7 @@ namespace SampleApplication.Hubs
             return Connections.Push("TYPING", fromId, new {clientId, message = "typing..."});
         }
 
+        [HubMethodName("sendMessage")]
         public Task SendMessage(IDictionary<string, string> payload)
         {
             var fromId = Guid.Parse(payload["fromId"]);
@@ -35,9 +36,9 @@ namespace SampleApplication.Hubs
 
             var message = payload["message"];
 
-            Logger.LogInformation("Event:NEW_MESSAGE,clientId:{clientId} payload:{@payload}", fromId, new {clientId, message});
+            Logger.LogInformation("Event:NEW_MESSAGE,clientId:{clientId} payload:{@payload}", fromId, new {clientId, fromId, message});
 
-            return Connections.Push("NEW_MESSAGE", fromId, new {clientId, message});
+            return Connections.Push("NEW_MESSAGE", clientId, new {clientId = fromId, fromId = clientId, message});
         }
 
         [HubMethodName("getUserList")]
@@ -46,17 +47,20 @@ namespace SampleApplication.Hubs
             var clientId = Guid.Parse(payload["clientId"]);
 
             var users = UserService.GetUsers(clientId);
-            
+
             Logger.LogInformation("Event:USER_LOAD_SUCCESS,clientId:{clientId} payload:{@payload}", clientId, payload);
 
             return Connections.Push("USER_LOAD_SUCCESS", clientId, users.Result.Select(p => new {clientId = p.Key, username = p.Value}).ToList());
         }
 
+        [HubMethodName("hello")]
         public Task Join(IDictionary<string, string> payload)
         {
             var username = payload["username"];
 
             var clientId = Guid.Parse(payload["clientId"]);
+
+            Logger.LogInformation("Event:USER_CONNECTED,clientId:{clientId} payload:{@payload}", clientId, payload);
 
             return UserService.AddUser(username, clientId);
         }
@@ -110,7 +114,7 @@ namespace SampleApplication.Hubs
 
             Logger.LogInformation("Event:DISCONNECTED,clientId:{clientId} payload:{@payload}", connection.Result.Value, user.Result);
 
-            return Connections.Push("USER_DISCONNECTED", connection.Result.Value, new {clientId = connection.Result.Value, time = DateTime.Now.Hour.ToString("HH:mm:ss")});
+            return Connections.Push("DISCONNECTED", connection.Result.Value, new {clientId = connection.Result.Value, time = DateTime.Now.Hour.ToString("HH:mm:ss")});
 
             return Task.CompletedTask;
         }
