@@ -38,7 +38,7 @@ namespace SampleApplication.Hubs
 
             Logger.LogInformation("Event:NEW_MESSAGE,clientId:{clientId} payload:{@payload}", fromId, new {clientId, fromId, message});
 
-            return Connections.Push("NEW_MESSAGE", clientId, new {clientId = fromId, fromId = clientId, message});
+            return Connections.Push("NEW_MESSAGE", clientId, new {clientId, fromId, message});
         }
 
         [HubMethodName("getUserList")]
